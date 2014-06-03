@@ -1,0 +1,64 @@
+@(app: MobileApp)
+
+<div class="widget widget-heading-simple widget-body-simple">
+<div class="widget-body">
+    <div class="separator bottom"></div>
+<!-- Row -->
+<div class="row-fluid">
+    <div class="span2">
+    <!-- Stats Widget -->
+    <div class="widget-stats widget-stats-gray widget-stats-2" data-toggle="tooltip" data-original-title="Monthly Active Users" data-placement="bottom">
+        <span class="count" id="WidgetMau@app.id.get.stringify">0</span>
+        <span class="txt">MAU</span>
+    </div>
+    <!-- // Stats Widget END -->
+    </div>
+    <div class="span2">
+    <!-- Stats Widget -->
+    <div class="widget-stats widget-stats-2" data-toggle="tooltip" data-original-title="Daily Active Users" data-placement="bottom">
+        <span class="count" id="WidgetDau@app.id.get.stringify">0</span>
+        <span class="txt">DAU</span>
+    </div>
+    <!-- // Stats Widget END -->
+    </div>
+    <div class="span2">
+    <!-- Stats Widget -->
+    <div class="widget-stats widget-stats-gray widget-stats-2" data-toggle="tooltip" data-original-title="Average Session Time" data-placement="bottom">
+        <span class="count" id="WidgetSessionLength@app.id.get.stringify">0</span>
+        <span class="txt">Average Session Length</span>
+    </div>
+    <!-- // Stats Widget END -->
+    </div>
+    <div class="span2">
+    <!-- Stats Widget -->
+    <div class="widget-stats widget-stats-2" data-toggle="tooltip" data-original-title="Average Revenue Per User" data-placement="bottom">
+        <span class="count" id="WidgetARPU@app.id.get.stringify">$0.0</span>
+        <span class="txt">ARPU</span>
+    </div>
+    <!-- // Stats Widget END -->
+    </div>
+    <div class="span2">
+    <!-- Stats Widget -->
+    <div class="widget-stats widget-stats-gray widget-stats-2" data-toggle="tooltip" data-original-title="Average Revenue Per Paying User" data-placement="bottom">
+        <span class="count" id="WidgetARPPU@app.id.get.stringify">$0.0</span>
+        <span class="txt">ARPPU</span>
+    </div>
+    <!-- // Stats Widget END -->
+    </div>
+    <div class="span2">
+    <!-- Stats Widget -->
+    <div class="widget-stats widget-stats-2" data-toggle="tooltip" data-original-title="Daily Revenue" data-placement="bottom">
+        <span class="count" id="WidgetDailyRevenue@app.id.get.stringify">$0</span>
+        <span class="txt">Daily Revenue</span>
+    </div>
+    <!-- // Stats Widget END -->
+    </div>
+</div>
+<!-- // Row END -->
+</div>
+</div>
+
+<script type="text/javascript">
+    $()
+    miniwidget("@app.id.get.stringify");
+</script>

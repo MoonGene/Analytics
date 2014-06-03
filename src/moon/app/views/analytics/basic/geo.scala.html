@@ -1,0 +1,30 @@
+@(selectedAppId: String, selectedApp: MobileApp, mobileApps: List[MobileApp], acc: Account, sessionData: SessionData, location: Option[String])
+
+@common.analytics.frame(title = "Geo - MoonGene - Realtime Mobile Analytics for Games and Apps!", selectedAppId = selectedAppId) {
+    @analytics.body(selectedAppId = selectedAppId, allApps = mobileApps, activeTab = "basic", acc = acc, sessionData = sessionData, location = location) {
+
+        @common.analytics.currentpath(selectedApp.name, Array("Basic", "Geo"))
+
+        <h1>Geo Stats</h1>
+        <div class="MonthPicker" id="geoMonthPicker" title="Pick month:" >Pick a month:</div>
+        <div class="separator bottom"></div>
+
+        <div class="innerLR">
+            <div class="row-fluid">
+                <div class="span12 dash">
+                    @common.analytics.worldmap()
+                </div>
+            </div>
+        </div>
+
+       <script src="@routes.Assets.at("scripts/plugins/monthpicker/monthpicker.min.js")"></script>
+
+       <script src="@routes.Assets.at("scripts/plugins/tables/DataTables/media/js/jquery.dataTables.min.js")"></script>
+       <script src="@routes.Assets.at("scripts/plugins/tables/DataTables/extras/TableTools/media/js/ZeroClipboard.js")"></script>
+       <script src="@routes.Assets.at("scripts/plugins/tables/DataTables/extras/TableTools/media/js/TableTools.js")"></script>
+       <script src="@routes.Assets.at("scripts/plugins/tables/DataTables/extras/ColVis/media/js/ColVis.min.js")"></script>
+       <script src="@routes.Assets.at("scripts/plugins/tables/DataTables/media/js/DT_bootstrap.js")"></script>
+
+       <script src="@routes.Assets.at("scripts/moongene/graph/geo.js?12213")"></script>
+    }
+}

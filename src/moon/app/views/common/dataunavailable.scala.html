@@ -1,0 +1,8 @@
+@(text: String = "No Data is currently available, make sure the SDK is integrated into your app.", hidden: Boolean = true)
+
+<div id="noDataBlock" style="@if(hidden) { display: none }">
+    <div class="widget-head">
+        <h4 class="heading glyphicons warning_sign"><i></i>@text</h4>
+    </div>
+    <div class="separator bottom"></div>
+</div>

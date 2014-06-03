@@ -1,0 +1,72 @@
+@(selectedAppId: String, selectedApp: MobileApp, mobileApps: List[MobileApp], acc: Account, sessionData: SessionData, location: Option[String])
+
+@common.analytics.frame(title = "Dashboard - MoonGene - Realtime Mobile Analytics for Games and Apps!", selectedAppId = selectedAppId) {
+    @analytics.body(selectedAppId = selectedAppId, allApps = mobileApps, activeTab = "dashboard", acc = acc, sessionData = sessionData, location = location) {
+
+        @common.analytics.currentpath(selectedApp.name, Array("Dashboard"))
+
+        <h1>Dashboard</h1>
+        <div class="innerLR">
+            @if(selectedAppId == "all") {
+
+                <script src="@routes.Assets.at("scripts/moongene/miniwidget.js")" type="text/javascript"></script>
+
+                <div class="widget widget-heading-simple widget-body-white">
+                    <div class="widget-head">
+                        <h3 class="heading glyphicons show_thumbnails"><i></i>All Apps</h3>
+                    </div>
+
+                    <div class="widget-body">
+                        <div class="row-fluid">
+                            <div class="span12" id="demo_popovers">
+
+                                @mobileApps.map { app =>
+
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="inner">
+                                                <div class="popover top" style="max-width: none; z-index: 1">
+                                                    <div class="arrow"></div>
+                                                    <h3 class="popover-title">@app.name</h3>
+                                                    <div class="popover-content">
+                                                        @common.analytics.miniwidget(app)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="separator bottom"></div>
+                                    <!-- a href="@if(location == None) {@routes.Analytics.dashboard(app.id.get.stringify)} else {@location.get.replace("APPID", app.id.get.stringify)}" class="glyphicons gamepad"><i></i><span>@app.name</span></a -->
+                                }
+
+                                @if(mobileApps.isEmpty) {
+                                        @common.dataunavailable("You have no apps created. Please create one by clicking a button on the left side panel.", hidden = false)
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                                    <div class="separator bottom"></div>
+                </div>
+
+            } else {
+                @common.analytics.dashwidgets()
+                <p class="separator text-center"><i class="icon-ellipsis-horizontal icon-3x"></i></p>
+
+                <h3 id="dashchart_dau_scr">App Performance</h3>
+                @common.analytics.dashcharts()
+                <p class="separator text-center"><i class="icon-ellipsis-horizontal icon-3x"></i></p>
+            }
+
+        </div>
+
+        <script src="@routes.Assets.at("scripts/moongene/graph/dash.js?12213")"></script>
+
+        @if(selectedAppId != "all") {
+            <script type="text/javascript">
+                initializeDashGraphs();
+            </script>
+        }
+    }
+}

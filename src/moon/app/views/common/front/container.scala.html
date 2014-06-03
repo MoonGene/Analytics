@@ -1,0 +1,187 @@
+@(content: Html)
+
+<body class="login">
+
+<!-- Main Container Fluid -->
+<div class="container-fluid menu-hidden">
+
+    <!-- Content -->
+    <div id="content">
+
+        <!-- Top navbar (note: add class "navbar-hidden" to close the navbar by default) -->
+        <div class="navbar main hidden-print">
+
+            <div class="secondary">
+                <div class="container-960">
+
+                    <!-- Menu Toggle Button -->
+                    <button type="button" class="btn btn-navbar visible-phone pull-right">
+                        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                    <!-- // Menu Toggle Button END -->
+
+                    <ul class="topnav pull-right">
+                        <li class="inverse"><a href="#modal-login" data-toggle="modal" class="glyphicons unlock"><i></i> Sign in</a></li>
+                        <!-- li class="primary"><a href="#modal-signup" data-toggle="modal" class="glyphicons user_add"><i></i> Sign up</a></li -->
+                        <li class="primary"><a href="#modal-subscribe" data-toggle="modal" class="glyphicons user_add"><i></i> Sign up</a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+
+            <div class="container-960">
+
+                <!-- Brand -->
+                <a href="/" class="appbrand pull-left"><img src="@routes.Assets.at("images/logo-32.png")"/><span class="text-primary">MOON</span> GENE</a>
+
+                <ul class="topnav pull-right">
+
+                    <li><a href="/">Home</a></li>
+                    <li><a href="@routes.FrontPage.features()">Features</a></li>
+                    <li><a id="navbar-support" href="#">Contact</a></li>
+
+                </ul>
+                <div class="clearfix"></div>
+                <!-- // Top Menu Right END -->
+
+            </div>
+
+        </div>
+
+        @content
+
+    </div>
+
+    <div id="footer" class="hidden-print">
+
+        <div class="container-960 innerTB">
+            <div class="row-fluid">
+                <div class="span2">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="@routes.FrontPage.features()">Features</a></li>
+                        <li><a id="footer-support" href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="span10">
+                    <h4>About</h4>
+                    <div class="box-generic">
+                        MoonGene real-time mobile analytical solution was created with games in mind.
+                        Our goal is to maximize revenue per user, increase engagement and lifetime value of
+                        players through a set of game-tailored tools that analyze gameís world balance and
+                        userís behavior for you. With your success comes ours, so we have created this service
+                        to make you successful.
+                    </div>
+                </div>
+            </div>
+
+            <div class="copy">
+                &copy; 2014 - <a href="http://www.mosaicpro.biz">MoonGene.com</a>
+                <span class="appbrand">MOONGENE REALTIME MOBILE ANALYTICS FOR GAMES</span>
+            </div>
+        </div>
+
+    </div>
+    <!-- // Footer END -->
+
+</div>
+<!-- // Main Container Fluid END -->
+
+@common.themer()
+@modals.login()
+@modals.signup()
+@modals.subscribe("Subscribe to newsletter", "beta")
+@modals.support(None)
+
+
+<!-- JQuery -->
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<!-- Code Beautify -->
+<script src="@routes.Assets.at("scripts/plugins/other/js-beautify/beautify.js")"></script>
+<script src="@routes.Assets.at("scripts/plugins/other/js-beautify/beautify-html.js")"></script>
+
+<!-- Global -->
+<script>
+    var basePath = '',
+            commonPath = '../../../common/';
+</script>
+
+<!-- JQueryUI -->
+<script src="@routes.Assets.at("scripts/plugins/system/jquery-ui/js/jquery-ui-1.9.2.custom.min.js")"></script>
+
+<!-- JQueryUI Touch Punch -->
+<!-- small hack that enables the use of touch events on sites using the jQuery UI user interface library -->
+<script src="@routes.Assets.at("scripts/plugins/system/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js")"></script>
+
+
+<!-- jQuery REVOLUTION Slider  -->
+<script type="text/javascript" src="@routes.Assets.at("scripts/plugins/other/revolution-slider/js/jquery.themepunch.revolution.min.js")"></script>
+
+<!-- Front Index with Revolution Slider Demo Script -->
+<script src="@routes.Assets.at("scripts/demo/front_index_revolutionslider.js?1374506533")"></script>
+
+<!-- Modernizr -->
+<script src="@routes.Assets.at("scripts/plugins/system/modernizr.js")"></script>
+
+<!-- Bootstrap -->
+<script src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")"></script>
+
+<!-- SlimScroll Plugin -->
+<script src="@routes.Assets.at("scripts/plugins/other/jquery-slimScroll/jquery.slimscroll.js")"></script>
+
+<!-- MegaMenu -->
+<script src="@routes.Assets.at("scripts/demo/megamenu.js?1374506533")"></script>
+
+<!-- jQuery ScrollTo Plugin -->
+<!--[if gt IE 8]><!--><script src="http://balupton.github.io/jquery-scrollto/lib/jquery-scrollto.js"></script><!--<![endif]-->
+
+<!-- History.js -->
+<!--[if gt IE 8]><!--><script src="http://browserstate.github.io/history.js/scripts/bundled/html4+html5/jquery.history.js"></script><!--<![endif]-->
+
+<!-- Holder Plugin -->
+<script src="@routes.Assets.at("scripts/plugins/other/holder/holder.js?1374506533")"></script>
+
+<!-- Uniform Forms Plugin -->
+<script src="@routes.Assets.at("scripts/plugins/forms/pixelmatrix-uniform/jquery.uniform.min.js")"></script>
+
+<!-- Bootstrap Extended -->
+<script src="@routes.Assets.at("bootstrap/extend/bootstrap-select/bootstrap-select.js")"></script>
+<script src="@routes.Assets.at("bootstrap/extend/bootbox.js")"></script>
+
+<!-- Google Code Prettify -->
+<script src="@routes.Assets.at("scripts/plugins/other/google-code-prettify/prettify.js")"></script>
+
+<!-- MiniColors Plugin -->
+<script src="@routes.Assets.at("scripts/plugins/color/jquery-miniColors/jquery.miniColors.js")"></script>
+
+<!-- Cookie Plugin -->
+<script src="@routes.Assets.at("scripts/plugins/system/jquery.cookie.js")"></script>
+
+<!-- Timezone detection plugin -->
+<script src="@routes.Assets.at("scripts/plugins/jstz/jstz.min.js")"></script>
+
+<!-- Colors -->
+<script>
+    var primaryColor = '#e5412d',
+            dangerColor = '#b55151',
+            successColor = '#609450',
+            warningColor = '#ab7a4b',
+            inverseColor = '#45484d';
+</script>
+
+<!-- Themer -->
+<script>
+    var themerPrimaryColor = primaryColor;
+</script>
+<script src="@routes.Assets.at("scripts/moongene/themer.js")"></script>
+
+<!-- Common Demo Script -->
+<script src="@routes.Assets.at("scripts/moongene/common.js?1374506533")"></script>
+<script src="@routes.Assets.at("scripts/moongene/front.js?1374506533")"></script>
+
+</body>

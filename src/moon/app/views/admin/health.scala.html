@@ -1,0 +1,16 @@
+@(acc: Account, sessionData: SessionData)
+
+@common.analytics.frame(title = "MoonGene Mobile Analytics", selectedAppId = "") {
+    @analytics.body(selectedAppId = "all", allApps = List(), activeTab = "admin", acc = acc, sessionData = sessionData, location = None) {
+
+        @common.analytics.currentpath("Administration", Array("System Health"))
+
+        <h1>System Health</h1>
+
+        <div class="innerLR">
+            <h3>Resources Usage</h3>
+            @common.admin.healthusagecharts()
+            <p class="separator text-center"><i class="icon-ellipsis-horizontal icon-3x"></i></p>
+        </div>
+    }
+}

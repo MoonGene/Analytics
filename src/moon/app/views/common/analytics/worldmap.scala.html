@@ -1,0 +1,108 @@
+<div class="widget widget-heading-simple widget-body-simple" >
+	<div class="widget-body">
+        @common.dataunavailable("No Data is available for the selected date.")
+
+        <div class="row-fluid">
+            <div class="span12 geo">
+                <div>
+                    <h4 class="heading" >Display </h4>
+                </div>
+
+                <select id="geoChartType" class="selectpicker span3" style="display: none;">
+                   <option value="mau">Monthly Active Users</option>
+                   <option value="asl">Average Session Length</option>
+                   <option value="spu">Sessions Per User</option>
+                   <option value="revenue">Monthly Revenue</option>
+                   <option value="arpu">Average Revenue Per User</option>
+                   <option value="arppu">Average Revenue Per Paying User</option>
+                </select>
+            </div>
+            <div class="span12 geo">
+                <div class="graph chart-white" id="geochart"></div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<div class="innerLR">
+	<div class="widget widget-heading-simple widget-body-gray">
+		<div class="widget-body">
+
+			<!-- Table -->
+			<table class="dynamicTable tableTools table table-striped table-bordered table-condensed table-white" id="countriesTableMain">
+
+				<!-- Table heading -->
+				<thead>
+					<tr>
+						<th>Country</th>
+						<th title="Monthly Active Users - Unique">Monthly Active Users</th>
+						<th title="Total number of sessions">Sessions</th>
+						<th title="Total length of all sessions">Total Length (seconds)</th>
+						<th title="Average Session Length">Average Session Length (seconds)</th>
+                        <th title="Average Number of Sessions per User">Sessions Per User</th>
+                        <th title="Total Revenue">Revenue</th>
+                        <th title="Average Revenue per User and per Paying User">ARPU / ARPPU</th>
+					</tr>
+				</thead>
+				<!-- // Table heading END -->
+
+				<!-- Table body -->
+				<tbody id="countriesTable">
+				</tbody>
+				<!-- // Table body END -->
+
+			</table>
+			<!-- // Table END -->
+
+		</div>
+	</div>
+</div>
+
+<style>
+    .boundary {
+      fill: none;
+      stroke: #333;
+      stroke-width: .5px;
+    }
+    .country {
+      stroke: #333;
+      stroke-width: .5px;
+    }
+    .place {
+        fill: #222;
+    }
+    .country-label {
+      fill: #777;
+      fill-opacity: .5;
+      font-size: 20px;
+      font-weight: 300;
+      text-anchor: middle;
+    }
+    div.graph-tooltip {
+      position: absolute;
+      text-align: center;
+      width: 120px;
+      height: 28px;
+      padding: 8px;
+      font: 12px sans-serif;
+      background: #fff;
+      border: solid 1px #aaa;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    .caption {
+      font-weight: bold;
+    }
+
+    .key path {
+      display: none;
+    }
+
+    .key line {
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+</style>
+

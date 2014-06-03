@@ -1,0 +1,130 @@
+@(selectedAppId: String, selectedApp: MobileApp, mobileApps: List[MobileApp], subPage: String, acc: Account, sessionData: SessionData, location: Option[String])
+
+@common.analytics.frame(title = "AppFlow - MoonGene - Realtime Mobile Analytics for Games and Apps!", selectedAppId = selectedAppId) {
+    @analytics.body(selectedAppId = selectedAppId, allApps = mobileApps, activeTab = "intelligent", acc = acc, sessionData = sessionData, location = location) {
+
+        @common.analytics.currentpath(selectedApp.name, Array("Intelligent", "Behavior", subPage))
+
+        <h1>Behavior: App Flow</h1>
+        <div class="MonthPicker" id="appflowMonthPicker" title="Pick month:" data-appflow-url="/data/behavior/appflow/">Pick a month:</div>
+
+        <div class="innerLR">
+            <div class="row-fluid">
+                <div id="widget-query-filter" class="widget row-fluid widget-heading-simple widget-body-gray">
+                    @common.dataunavailable()
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12 dash">
+                    <h4 class="heading">State Flow</h4>
+                    <div id="behaviorAppFlowGraph" style="width: 100%; height: 500px" ></div>
+                </div>
+            </div>
+
+            <div class="separator bottom"></div>
+            <div class="separator bottom"></div>
+            <div class="separator bottom"></div>
+
+            <div class="row-fluid">
+                <div class="span12 dash">
+                    <div class="span3"><h4 class="heading">State Timeline</h4></div>
+                    <div class="span3">
+                        <select style="width: 100%;" id="stateTimeline">
+                            <optgroup label="State Timelines:" id="stateTimelineGroup">
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="graph chart-white" id="behaviorAppFlowTimelineGraph" style="width: 100%; height: 500px" ></div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+        .state
+        {
+            stroke-width: 4px;
+            fill-opacity: 1.0;
+            fill: rgb(255, 255, 255);
+        }
+
+        /* Node Style for Application specific states */
+        .outer-app {
+            stroke: rgb(150,221,245);
+        }
+        .inner-app {
+            fill: rgb(49,189,235);
+        }
+
+        /* Node Style for System specific states */
+        .outer-sys {
+            stroke: rgb(148,225,228);
+        }
+        .inner-sys {
+            fill: rgb(48,196,198);
+        }
+
+        /* Node Style for Attention required states */
+        .inner-purple {
+            fill: rgb(204,189,230);
+        }
+        .outer-purple {
+            stroke: rgb(160,134,211);
+        }
+
+        /* Node Style for selected states */
+        .inner-select {
+            fill: rgb(249,194,148);
+        }
+        .outer-select {
+            stroke: rgb(249,139,47);
+        }
+
+        .state-text {
+          pointer-events: none;
+          font: 15px sans-serif;
+          text-anchor: middle;
+          text-shadow: 0px 0px 8px #000; /*, 0px 0px 8px #000*/
+          fill: #ffffff;
+          /*
+          stroke: #ffffff;
+          stroke-width: 1px;
+          */
+        }
+
+        .transition {
+          stroke: #999;
+          stroke-opacity: .7;
+        }
+
+        div.graph-tooltip {
+          position: absolute;
+          text-align: center;
+          width: 180px;
+          height: 34px;
+          padding: 8px;
+          font: 12px sans-serif;
+          background: #fff;
+          border: solid 1px #aaa;
+          border-radius: 8px;
+          pointer-events: none;
+        }
+
+        .g-tip {
+          pointer-events: none;
+        }
+
+        .g-tip name {
+          text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff, -1px 1px 0 #fff;
+        }
+
+        </style>
+
+        <script src="@routes.Assets.at("scripts/plugins/monthpicker/monthpicker.min.js")"></script>
+        <script src="@routes.Assets.at("scripts/moongene/behavior_appflow.js?123123")"></script>
+    }
+}

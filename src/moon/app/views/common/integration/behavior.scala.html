@@ -1,0 +1,85 @@
+@(os: String, selectedApp: MobileApp)
+
+<p>Behavior Analysis operates with states and events. Reporting those will be key in detecting user's behavioral patterns.</p>
+
+<h5>State Change</h5>
+<p>Every time your application changes logical state, such as transition from one menu to another one or from main menu to game level, stateChange should be called.</p>
+<pre class="prettyprint">
+    @if(os == "Android") {
+        //The declaration of stateChange
+        public void stateChange(String stateName)
+
+        //An example of moving to Main Menu
+        stateChange("Main Menu");
+        //Now transition after some time to game level
+        stateChange("Game Level");
+    } @if(os == "iOS") {
+    //No code yet is provided for iOS!
+}
+</pre>
+
+<h5>State Event</h5>
+<p>When important events happen in your application, they can be reported using the stateEvent call. There is a possibility to define multiple timelines for such events within the same state. For example for a state "game level" timelines "level 1" and "level 2" could be used.</p>
+<pre class="prettyprint">
+    @if(os == "Android") {
+
+        //The declaration of stateEvent
+        public void stateEvent(String event, String timeline, String data1, String data2)
+        public void stateEvent(String event, String timeline, String data1)
+        public void stateEvent(String event, String timeline)
+        public void stateEvent(String event)
+
+        //Usage examples. Data1 and Data2 are user defined values and can be used later to
+        //do segmentation or other types of analysis
+
+        //timeline will be default, data1 and data2 will be empty
+        stateEvent("connected to facebook");
+        //data1 and data2 will be empty
+        stateEvent("finished level", "Level 34");
+        //15 can represent number of hits to kill the boss and data2 will be empty
+        stateEvent("killed boss", "Level 13", "15");
+        //An example of all parameters usage
+        stateEvent("helped a friend", "Level 12", "facebookFriend", "gaveCash")
+    } @if(os == "iOS") {
+    //No code yet is provided for iOS!
+}
+</pre>
+
+<h5>Misc calls</h5>
+<p>There are a few other calls to be done when dealing with analytics.</p>
+<pre class="prettyprint">
+    @if(os == "Android") {
+
+        //Flush method to enforce events sending, can be used if you want to expedite the default 30 seconds flush interval
+        public void flush()
+
+        //To ensure accuracy when dealing with timelines, pause and unpause should be called
+        public void pause()
+        public void unpause()
+
+        //An example
+        public class SampleActivity extends Activity
+        @Html("{")
+            //This is your main instance of analytics
+            Analytics mAnalytics;
+
+            /**
+            * Invoked when the Activity loses user focus.
+            */
+            @Html("@Override")
+            protected void onPause() @Html("{")
+                super.onPause();
+                mAnalytics.pause();
+                //...
+
+            @Html("}")
+
+            //...
+        @Html("}")
+    } @if(os == "iOS") {
+    //No code yet is provided for iOS!
+}
+</pre>
+
+
+

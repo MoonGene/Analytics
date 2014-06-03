@@ -1,0 +1,9 @@
+@(appName : String, path: Array[String])
+
+<ul class="breadcrumb">
+    <li><a class="glyphicons gamepad"><i></i> @appName</a></li>
+    @for( crumb <- path ){
+        <li class="divider"><i class="icon-caret-right"></i></li>
+        <li>@crumb</li>
+    }
+</ul>

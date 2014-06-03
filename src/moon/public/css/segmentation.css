@@ -1,0 +1,7 @@
+td.datepickerSelected a{
+    color: white;
+}
+
+.has-error input, input.has-error {
+    border-color: #b94a48;
+}

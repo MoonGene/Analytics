@@ -1,0 +1,49 @@
+<div class="modal hide fade" id="modal-signup">
+
+    <div class="row-fluid" style="overflow: visible;">
+        <div class="span12">
+            <div class="wrapper signup">
+           			<h1 class="glyphicons user_add">Sign up <i></i></h1>
+
+           			<div class="widget widget-heading-simple">
+           				<div class="widget-body">
+
+                            <form id="modal-signup-form" >
+                                <div class="row-fluid row-merge">
+                                    <div class="span6">
+                                        <div class="innerR">
+                                            <label class="strong">First Name</label>
+                                            <input type="text" class="input-block-level" name="firstName" placeholder="Your First Name"/>
+                                            <label class="strong">Last Name</label>
+                                            <input type="text" class="input-block-level" name="lastName" placeholder="Your Last Name"/>
+                                            <label class="strong">Company</label>
+                                            <input type="text" class="input-block-level" name="company" placeholder="Company"/>
+                                        </div>
+                                    </div>
+                                    <div class="span6">
+                                        <div class="innerL">
+                                            <label class="strong">Email</label>
+                                            <input type="text" class="input-block-level" name="email" placeholder="Your Email Address"/>
+
+                                            <label class="strong">Password</label>
+                                            <input type="password" class="input-block-level" name="password" placeholder="Your Password"/>
+
+                                            <input id="timezone" type="hidden" name="timezone" />
+
+                                            <a id="modal-signup-submit" data-signup-url="@routes.Auth.signup" data-loading-text="Signing up ..." class="btn btn-icon-stacked btn-block btn-primary glyphicons user_add"><i></i><span>Create account</span><span class="strong">FREE</span></a>
+                                            <p>Having troubles? <a href="contact.html?lang=en&amp;style=style-default-menus-dark">Get Help</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+           					</form>
+
+                            <div class="widget-footer">
+                                <p id="modal-signup-footer" class="glyphicons pen"><i></i>Please provide basic information to create an account.</p>
+                            </div>
+
+           				</div>
+           			</div>
+           	</div>
+        </div>
+    </div>
+</div>

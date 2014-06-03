@@ -1,0 +1,26 @@
+<div class="modal hide fade" id="modal-newapp">
+
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>New App</h3>
+	</div>
+
+	<!-- Modal body -->
+    <form id="modal-newapp-form">
+        <div class="modal-body">
+            <div class="row-fluid" style="overflow: visible;">
+                <input type="text" name="appname" placeholder="App Name" class="span12">
+            </div>
+        </div>
+    </form>
+    <!-- // Modal body END -->
+
+	<!-- Modal footer -->
+	<div class="modal-footer">
+        <a id="modal-newapp-create" data-dismiss="modal" data-loading-text="Creating..." class="btn btn-primary"
+            data-create-url="@routes.App.Create" >Create</a>
+		<a id="modal-newapp-cancel" data-handler="0" data-dismiss="modal" class="btn btn-default">Cancel</a>
+	</div>
+	<!-- // Modal footer END -->
+	
+</div>

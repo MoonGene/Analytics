@@ -1,0 +1,244 @@
+@(activeTab: String, mobileApps: List[MobileApp], selectedAppId: String, acc: Account, sessionData: SessionData)
+
+@defining("active"){ activeClass =>
+
+    <div class="navbar main">
+       <!-- Menu Toggle Button -->
+       <button type="button" class="btn btn-navbar pull-left visible-phone">
+       <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+       </button>
+       <!-- // Menu Toggle Button END -->
+       <!-- Not Blank page -->
+       <!-- Full Top Style -->
+       <ul class="topnav pull-left hidden-print">
+          <li @if(activeTab == "dashboard") { class="@activeClass" }>
+            <a href="@routes.Analytics.dashboard(selectedAppId)"
+               class="glyphicons dashboard"><i></i>Dashboard
+            </a>
+          </li>
+        @if(selectedAppId != "all") {
+          <li class="dropdown dd-1 @(if(activeTab == "basic") activeClass)">
+             <a href="" data-toggle="dropdown" class="glyphicons notes"><i></i>Basic<span class="caret"></span></a>
+             <ul class="dropdown-menu pull-left">
+                <li>
+                    <a href="@routes.Analytics.basic(selectedAppId, "segmentation")"
+                       class="glyphicons stats"><i></i>Segmentation
+                    </a>
+                </li>
+                <!-- li>
+                    <a href="@routes.Analytics.basic(selectedAppId, "funnels")"
+                       class="glyphicons signal"><i></i>Funnels
+                    </a>
+                </li -->
+                <li>
+                    <a href="@routes.Analytics.basic(selectedAppId, "retention")"
+                       class="glyphicons magnet"><i></i>Retention
+                    </a>
+                </li>
+                <!-- li>
+                    <a href="@routes.Analytics.basic(selectedAppId, "people")"
+                       class="glyphicons group"><i></i>People
+                    </a>
+                </li -->
+                <li>
+                    <a href="@routes.Analytics.basic(selectedAppId, "geo")"
+                       class="glyphicons global"><i></i>Geo
+                    </a>
+                </li>
+             </ul>
+          </li>
+          <li class="@(if(activeTab == "intelligent") s"mega-menu $activeClass dropdown dd-1" else "mega-menu dropdown dd-1")">
+             <a href="#" class="glyphicons fire" data-toggle="dropdown"><i></i> Intelligent<span class="caret"></span></a>
+             <div class="mega-sub">
+                <div class="mega-sub-inner">
+                   <div class="row-fluid">
+                      <div class="span2">
+                         <h4><a href="#" class="glyphicons fishes"><i></i></a>Behavior</h4>
+                         <ul class="icons-ul" data-glyph="fishes" data-headline="Behavior"
+                             data-desc="Behavior analysis helps you to find blockers in your app flow, where users drop off, investigate timelines and events distribution throughout game sessions. User profile is generated to understand your audience behavior and of course the most important - first session is tracked.">
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "behavior", "profile")">
+                                    <span class="icon-li icon-arrow-right"></span> User Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "behavior", "appflow")">
+                                    <span class="icon-li icon-arrow-right"></span> App Flow
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "behavior", "firstsession")">
+                                    <span class="icon-li icon-arrow-right"></span> First Session
+                                </a>
+                            </li>
+                         </ul>
+                         <h4><a href="#" class="glyphicons coins"><i></i></a>Economy</h4>
+                         <ul class="icons-ul" data-glyph="coins" data-headline="Economy"
+                             data-desc="Economy analysis unveils your user's purchase preferences, creates a purchase trigger flow - preceeding events that stimulate purchases and helps you track your game world balance &amp; goods amount progression.">
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "economy", "profile")">
+                                    <span class="icon-li icon-arrow-right"></span> User Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "economy", "economybalance")">
+                                    <span class="icon-li icon-arrow-right"></span> Economy Balance
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "economy", "purchasetrigger")">
+                                    <span class="icon-li icon-arrow-right"></span> Purchase Trigger
+                                </a>
+                            </li>
+                         </ul>
+                      </div>
+                      <div class="span2">
+                         <h4><a href="#" class="glyphicons pie_chart"><i></i></a>Marketing</h4>
+                         <ul class="icons-ul" data-glyph="pie_chart" data-headline="Marketing"
+                             data-desc="[This feature is currently not available publicly] Marketing helps you track your marketing efforts and identify the most optimal traffic channels.">
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "marketing", "notification")">
+                                    <span class="icon-li icon-arrow-right"></span> Notification (N/A)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "marketing", "trafficchannels")" >
+                                    <span class="icon-li icon-arrow-right"></span> Traffic Channels (N/A)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "marketing", "abtesting")">
+                                    <span class="icon-li icon-arrow-right"></span> A/B Testing (N/A)
+                                </a>
+                            </li>
+                         </ul>
+                         <h4><a href="#" class="glyphicons history"><i></i></a>Evolution</h4>
+                         <ul class="icons-ul" data-glyph="history" data-headline="Evolution"
+                                 data-desc="[This feature is currently not available publicly] Evolution enables you to see the development of your app in time. How user's preference changes with time, how his behavior is affected by your new changes and more.">
+                             <li>
+                                 <a href="@routes.Analytics.intelligent(selectedAppId, "evolution", "timeline")">
+                                     <span class="icon-li icon-arrow-right"></span> Timeline (N/A)
+                                 </a>
+                             </li>
+                             <li>
+                                 <a href="@routes.Analytics.intelligent(selectedAppId, "evolution", "behaviorprofile")">
+                                     <span class="icon-li icon-arrow-right"></span> Behavior Profile (N/A)
+                                 </a>
+                             </li>
+                             <li>
+                                 <a href="@routes.Analytics.intelligent(selectedAppId, "evolution", "economyprofile")">
+                                     <span class="icon-li icon-arrow-right"></span> Economy Profile (N/A)
+                                </a>
+                             </li>
+                         </ul>
+                      </div>
+                      <div class="span3">
+                         <h4><i class="icon-wrench icon-fixed-width text-primary"></i> Engineering</h4>
+                         <ul class="icons-ul" data-glyph="" data-headline="Engineering"
+                             data-desc="[This feature is currently not available publicly] Engineering opens a view to software and hardware problems. Where and when crashes occur, what are the most problematic devices and more.">
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "engineering", "crashreport")">
+                                    <span class="icon-li icon-arrow-right"></span> Crash report (N/A)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "engineering", "crashflow")">
+                                    <span class="icon-li icon-arrow-right"></span> Crash Flow (N/A)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "engineering", "deviceprofile")">
+                                    <span class="icon-li icon-arrow-right"></span> Device Profile (N/A)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@routes.Analytics.intelligent(selectedAppId, "engineering", "networkprofile")">
+                                    <span class="icon-li icon-arrow-right"></span> Network Profile (N/A)
+                                </a>
+                            </li>
+                         </ul>
+                      </div>
+                      <div class="span5">
+                         <div class="innerTB innerR">
+                            <div class="glyphicons glyphicon-xlarge glyphicon-top glyphicon-primary">
+                               <i></i>
+                               <h4 class="headline"></h4>
+                               <p class="margin-none description" style="width: 483px">
+
+                                    <br> <a href="">learn more</a>
+                               </p>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <!-- /cbp-hrsub-inner -->
+             </div>
+             <!-- /cbp-hrsub -->
+          </li>
+          <li class="dropdown dd-1 @(if(activeTab == "integrate") activeClass)">
+             <a href="" data-toggle="dropdown" class="glyphicons claw_hammer"><i></i> Integrate<span class="caret"></span></a>
+             <ul class="dropdown-menu pull-left">
+                <!-- li><a href="#" class="glyphicons bicycle"><i></i>Emulator</a></li -->
+                <li><a href="@routes.App.integrate(selectedAppId, "iOS")" class="glyphicons iphone"><i></i>iOS</a></li>
+                <li><a href="@routes.App.integrate(selectedAppId, "Android")" class="glyphicons iphone"><i></i>Android</a></li>
+             </ul>
+          </li>
+          <li @if(activeTab == "settings") { class="@activeClass" }>
+              <a href="@routes.App.Get(selectedAppId)"
+                 class="glyphicons cogwheel"><i></i>App Settings
+              </a>
+          </li>
+        } <!-- End of check for all apps, as selected app. -->
+          @if(sessionData.access == AccountAccessLevel.Admin) {
+              <li class="dropdown dd-1 @(if(activeTab == "admin") activeClass)">
+                 <a href="" data-toggle="dropdown" class="glyphicons keys"><i></i> Administration<span class="caret"></span></a>
+                 <ul class="dropdown-menu pull-left">
+                    <li><a href="@routes.Admin.health()" class="glyphicons cardio"><i></i>System Health</a></li>
+                    <li><a href="@routes.Admin.users()" class="glyphicons parents"><i></i>Users Management</a></li>
+                    <li><a href="@routes.Admin.apps()" class="glyphicons show_thumbnails"><i></i>Apps Management</a></li>
+                 </ul>
+              </li>
+          }
+       </ul>
+       <!-- // Full Top Style END -->
+       <!-- // Not Blank Page END -->
+       <!-- Top Menu Right -->
+       <ul class="topnav pull-right hidden-phone">
+          <!-- Language menu -->
+          <!-- li class="hidden-phone dropdown dd-1 dd-flags" id="lang_nav">
+             <a href="#" data-toggle="dropdown"><img src="@routes.Assets.at("images/lang/en.png")" alt="en" /></a>
+             <ul class="dropdown-menu pull-right">
+                <li class="active"><a href="" title="English"><img src="@routes.Assets.at("images/lang/en.png")" alt="English"> English</a></li>
+                <li><a href="" title="Russian"><img src="@routes.Assets.at("images/lang/ru.png")" alt="Russian"> Russian</a></li>
+             </ul>
+          </li -->
+          <!-- // Language menu END -->
+          <!-- Profile / Logout menu -->
+          <li class="account dropdown dd-1">
+             <a data-toggle="dropdown"
+                href="" class="glyphicons logout lock">
+                 <span class="hidden-tablet hidden-phone hidden-desktop-1">@sessionData.firstName @sessionData.lastName</span><i></i>
+             </a>
+             <ul class="dropdown-menu pull-right">
+                <li>
+                    <a href="@routes.AccountDetails.settings" class="glyphicons cogwheel">Settings<i></i></a>
+                </li>
+                <li>
+                   <span>
+                   <a class="btn btn-default btn-mini pull-right" href="@routes.Auth.signout">Sign Out</a>
+                   </span>
+                </li>
+             </ul>
+          </li>
+          <!-- // Profile / Logout menu END -->
+       </ul>
+       <!-- // Top Menu Right END -->
+       <ul class="topnav pull-right hidden-phone">
+
+          <li class="hidden-tablet"><a id="navbar-support" class="glyphicons comments single-icon"><i></i></a></li>
+       </ul>
+
+       <div class="clearfix"></div>
+    </div>
+}

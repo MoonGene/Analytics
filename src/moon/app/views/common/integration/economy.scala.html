@@ -1,0 +1,76 @@
+@(os: String, selectedApp: MobileApp)
+
+<p>Economy Analytics requires just two additional calls to be done.</p>
+
+<h5>Economy related events</h5>
+<p>Every time a user buys something in the game, an economyEvent call should be made. It includes multiple various paramteres, but some can be omitted.</p>
+<pre class="prettyprint">
+    @if(os == "Android") {
+        //There are a few declarations to call economyEvent
+        public void economyEvent(Long paymentAmount, String itemID, Long itemAmount, String campaign, String timeline)
+        //timeline will be Default
+        public void economyEvent(Long paymentAmount, String itemID, Long itemAmount, String campaign)
+        //Campaign will be empty and timeline default
+        public void economyEvent(Long paymentAmount, String itemID, Long itemAmount)
+        //Timeline is Default, campaign is empty and item amount is 1
+        public void economyEvent(Long paymentAmount, String itemID)
+
+        //An example, paymentAmount is in cents, so for 1 dollar it would be 100
+        //A user pays 1 dollar for 25 Gold Coins during the ChristmasSales campaign, the event
+        //occurs while on the PromoScreen
+        economyEvent(100, "Gold Coins", 25, "ChristmasSale", "PromoScreen")
+    } @if(os == "iOS") {
+        //No code yet is provided for iOS!
+    }
+</pre>
+
+<h5>In-app economy balance</h5>
+<p>It is usually important to keep track of all goods that players have and make sure that your promo campaigns do sales when people run out of certain items. For instance you sell gold coins with 75% discount and people buy a lot of those. How do you know when to do the next promo sale? Maybe players still have their old coins, so this is where this balance tracking comes in play.</p>
+<pre class="prettyprint">
+    @if(os == "Android") {
+        //There are two possible calls for economy balance:
+        //This one should be used whenever you want to track global balance of goods in the game
+        //useful when you deal with promo campaigns and want to make sure you sell what people need
+        public void economyBalance(EconomyBalanceItem[] balances)
+
+        //The following one is useful to analyse goods accumulation throughout the time
+        //For example you can put player's level in timeline value, then you would know how much
+        //gold, keys or anythhing else players have on each level and see if it grows organically
+        //Please notice that value 0 is reserved for general balance of goods in the application, so you should
+        //normally use values above 0
+        public void economyBalance(EconomyBalanceItem[] balances, Integer timeline)
+
+        //Current limitations:
+        //length of balances array should not be more than 5 elements, if so it needs to be split into 2 calls or more
+        //timeline is currently limited to [0-100] range.
+
+        //EconomyBalanceItem is a simple class
+        public class EconomyBalanceItem @Html("{")
+            public String id;
+            public Long amount;
+
+            public EconomyBalanceItem(String ID, Long Amount) @Html("{")
+                this.id = ID;
+                this.amount = Amount;
+            @Html("}")
+        @Html("}")
+
+        //Here are calls examples
+        economyBalance(
+            @Html("{")
+                EconomyBalanceItem("Gold", 12),
+                EconomyBalanceItem("Silver", 253)
+            @Html("}"));
+
+        //Report accumulation of certain items throughout the time
+        economyBalance(
+            @Html("{")
+                EconomyBalanceItem("Red Key", 2),
+                EconomyBalanceItem("Green Key", 0),
+                EconomyBalanceItem("Blue Key", 56)
+            @Html("}"), 12); //Where 12 could be current player's level
+
+    } @if(os == "iOS") {
+        //No code yet is provided for iOS!
+    }
+</pre>

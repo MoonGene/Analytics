@@ -1,0 +1,37 @@
+@(title: String, code: String)
+
+<div class="modal hide fade" id="modal-subscribe">
+
+<div class="row-fluid" style="overflow: visible;">
+    <div class="span12">
+        <div class="wrapper">
+            <h1 class="glyphicons message_new">@title <i></i></h1>
+            <div class="widget widget-heading-simple widget-body-gray">
+                <div class="widget-body">
+                    <form id="modal-subscribe-form">
+                        <label>Name</label>
+                        <input type="text" name="name" class="input-block-level" placeholder="Your name"/>
+                        <label>Email</label>
+                        <input type="text" name="email" class="input-block-level" placeholder="Email address"/>
+
+                        <input type="hidden" name="code" class="input-block-level" value="@code"/>
+
+                        <div class="separator bottom"></div>
+                        <div class="row-fluid">
+                            <div class="span8">
+                            </div>
+                            <div class="span4 center">
+                                <a id="modal-subscribe-submit" data-loading-text="Sending ..." data-dismiss="modal" data-subscribe-url="@routes.Utils.subscribe" class="btn btn-block btn-inverse">Subscribe</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="widget-footer">
+                    <p id="modal-subscribe-footer" class="glyphicons pen"><i></i>We are in closed beta. We will notify when we are open!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

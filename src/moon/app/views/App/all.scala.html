@@ -1,0 +1,28 @@
+@(
+        selectedAppId: String,
+        selectedApp: MobileApp,
+        mobileApps: List[MobileApp],
+        acc: Account,
+        sessionData: SessionData
+ )
+
+@common.analytics.frame(title = "MoonGene Mobile Analytics", selectedAppId = selectedAppId){
+    @analytics.body(
+        selectedAppId = selectedAppId,
+        allApps = mobileApps,
+        activeTab = "settings",
+        acc = acc,
+        sessionData = sessionData,
+        location = None) {
+
+        @common.analytics.currentpath(selectedApp.name, Array("Settings"))
+
+       <h1>All apps</h1>
+
+        <ul>
+            @for(app <- mobileApps){
+                <li><a href="@routes.App.Get(app.id.get.stringify)" title="Edit">@app.name (@app.description)</a></li>
+            }
+        </ul>
+    }
+}

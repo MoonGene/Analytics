@@ -1,0 +1,26 @@
+@(os: String, selectedApp: MobileApp)
+
+@if(os == "Android") {
+
+    <h5>Eclipse IDE - Installing the library</h5>
+    <p>Step 1: Download the latest MoonGene Analytics library from here: http://www.moongene.com/sdk/android</p>
+    <p>Step 2: Import the library into your project's workspace. Go to File->Import->Android->Existing Android Code into Workspace. Browse for the folder with the library and then click Finish.</p>
+    <p>Step 3: Set library as a dwepedency of your projects. Go to your project properties, to the "Android" tab and then add the analytics library in the library section.</p>
+    <p>Step 4: Modify your AndroidManifest.xml permissions. We need to ensure that certain permissions are added.</p>
+    <pre class="prettyprint">
+        &lt;!-- Internet is required to send events to the MoonGene Analytics --&gt;
+        &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+
+        &lt;!-- This permissions is optional, but recommended to get more details on user's network
+        and optimize batching of events --&gt;
+        &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+    </pre>
+
+    <p>At this point, you're ready to use the MoonGene Analytics library inside Eclipse. Make sure that you import the library where you need it:</p>
+    <pre class="prettyprint">
+        import com.moongene.android.Analytics;
+    </pre>
+}
+@if(os == "iOS") {
+    <h5>iOS Integration is not finished yet.</h5>
+}

@@ -1,0 +1,131 @@
+<div class="widget widget-heading-simple widget-body-simple">
+<div class="widget-body">
+    <div class="row-fluid">
+        <div class="span12 dash">
+            <div><h4 class="heading" title="System Health - Nodes Load">Nodes Load (Events In\Out\Cur)</h4></div>
+            <div class="graph chart-white" id="adminchart_health_nodesload"></div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="widget widget-heading-simple widget-body-simple">
+<div class="widget-body">
+    <div class="row-fluid">
+        <div class="span12 dash">
+            <div><h4 class="heading" title="System Health - Nodes Load">Nodes DB Load (Queries Out\Cur)</h4></div>
+            <div class="graph chart-white" id="adminchart_health_nodesdbload"></div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="widget widget-heading-simple widget-body-simple">
+<div class="widget-body">
+    <div class="row-fluid">
+        <div class="span12 dash">
+            <div><h4 class="heading" title="System Health - Nodes Load">Nodes DB Errors</h4></div>
+            <div class="graph chart-white" id="adminchart_health_nodesdberrors"></div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="widget widget-heading-simple widget-body-simple">
+	<div class="widget-body">
+        <div class="row-fluid">
+            <div class="span12 dash">
+                <div><h4 class="heading" title="System Health - CPU Usage">CPU</h4></div>
+                <div class="graph chart-white" id="adminchart_health_cpu"></div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<div class="widget widget-heading-simple widget-body-simple">
+	<div class="widget-body">
+        <div class="row-fluid">
+            <div class="span12 dash">
+                <div><h4 class="heading" title="System Health - Memory Usage">Memory</h4></div>
+                <div class="graph chart-white" id="adminchart_health_mem"></div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<div class="widget widget-heading-simple widget-body-simple">
+	<div class="widget-body">
+        <div class="row-fluid">
+            <div class="span12 dash">
+                <div><h4 class="heading" title="System Health - Network Stats">Network Incoming</h4></div>
+                <div class="graph chart-white" id="adminchart_health_netin"></div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<div class="widget widget-heading-simple widget-body-simple">
+	<div class="widget-body">
+        <div class="row-fluid">
+            <div class="span12 dash">
+                <div><h4 class="heading" title="System Health - Network Stats">Network Outcoming</h4></div>
+                <div class="graph chart-white" id="adminchart_health_netout"></div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<div class="widget widget-heading-simple widget-body-simple">
+	<div class="widget-body">
+        <div class="row-fluid">
+            <div class="span12 dash">
+                <div><h4 class="heading" title="System Health - Disk Read IO">Disk Read IO</h4></div>
+                <div class="graph chart-white" id="adminchart_health_diskread"></div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<div class="widget widget-heading-simple widget-body-simple">
+	<div class="widget-body">
+        <div class="row-fluid">
+            <div class="span12 dash">
+                <div><h4 class="heading" title="System Health - Disk Write IO">Disk Write IO</h4></div>
+                <div class="graph chart-white" id="adminchart_health_diskwrite"></div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<style>
+    .v-path {
+    	stroke-width: 1.5px;			/* the line width for paths is 2 pixels */
+    	fill: none;					/* don't fill the area bounded by any path elements */
+    }
+
+    .axis path,
+    .axis line {
+    	fill: none;					/* don't fill areas bounded by the axis line */
+    	stroke: grey;				/* make the axis line grey */
+    	stroke-width: 2;			/* make the width of the axis lines 1 pixel */
+        shape-rendering: crispEdges;/* make the edges sharp */
+    }
+
+    .legend {
+        padding: 5px;
+    	font: 10px sans-serif;
+    	background: yellow;
+    	box-shadow: 2px 2px 1px #888;
+    }
+
+    .grid .tick {
+        stroke: lightgrey;
+        opacity: 0.1;
+    }
+    .grid path {
+          stroke-width: 0;
+    }
+
+</style>
+
+<script src="@routes.Assets.at("scripts/moongene/graph/adminhealth.js?1211113")"></script>

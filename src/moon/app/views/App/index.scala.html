@@ -1,0 +1,120 @@
+@(
+        selectedAppId: String,
+        selectedApp: MobileApp,
+        mobileApps: List[MobileApp],
+        acc: Account,
+        sessionData: SessionData,
+        appForm: Form[MobileApp]
+ )
+
+@common.analytics.frame(title = "MoonGene Mobile Analytics", selectedAppId = selectedAppId){
+    @analytics.body(selectedAppId = selectedAppId, allApps = mobileApps, activeTab = "settings", acc = acc, sessionData = sessionData, location = None) {
+
+        @common.analytics.currentpath(selectedApp.name, Array("Settings"))
+
+        <style type="text/css">
+            form {
+                margin-left: 20px;
+            }
+
+            .error .error {
+                color: red;
+            }
+
+            .error input {
+                border-color: red;
+            }
+            fieldset dd,
+            fieldset dt {
+                float:left;
+            }
+            fieldset dl{
+                clear: both;
+            }
+
+            fieldset label {
+                display: inline-block;
+                width: 10em;
+            }
+
+            fieldset input {
+                width: 25em;
+            }
+
+            form .actions {
+                margin-top: 2em;
+            }
+
+            form .actions button{
+                margin-left: 1em;
+            }
+
+            fieldset #suspended_field {
+                height: 20px;
+            }
+        </style>
+
+        <h1>Settings</h1>
+
+        @if(acc.accessLevel == AccountAccessLevel.Admin) {
+            @helper.form(action = routes.App.AdminUpdate()) {
+                <fieldset>
+                    <input name="id" type="hidden" value="@appForm("id").value.get"/>
+                    @helper.inputText(appForm("name"), '_label -> "Name")
+                    @helper.inputText(appForm("description"), '_label -> "Description")
+                    @helper.inputDate(appForm("created"), 'readonly -> "readonly", '_label -> "Created", '_showConstraints -> false)
+                    @helper.inputText(appForm("token"), '_label -> "Token", 'readonly -> "readonly")
+                    @helper.checkbox(appForm("suspended"), '_label -> "Suspended", '_showConstraints -> false)
+                    @helper.inputText(appForm("suspensionDetails"), '_label -> "Suspension details")
+                </fieldset>
+                <div class="actions">
+                    <input type="submit" value="Update" class="btn btn-primary"/>
+                    <button id="generate-token" type="button" class="btn btn-primary">Generate token</button>
+                </div>
+            }
+        }
+
+        @if(acc.accessLevel != AccountAccessLevel.Admin) {
+            @helper.form(action = routes.App.Update()) {
+                <fieldset>
+                    <input name="id" type="hidden" value="@appForm("id").value.get"/>
+                    @helper.inputText(appForm("name"), '_label -> "Name")
+                    @helper.inputText(appForm("description"), '_label -> "Description")
+                    @helper.inputDate(appForm("created"), 'readonly -> "readonly", '_label -> "Created", '_showConstraints -> false)
+                    @helper.inputText(appForm("token"), '_label -> "Token", 'readonly -> "readonly")
+                </fieldset>
+                <div class="actions">
+                    <input type="submit" value="Update" class="btn btn-primary"/>
+                    <button id="generate-token" type="button" class="btn btn-primary">Generate token</button>
+                </div>
+
+            }
+        }
+
+        @helper.form(action = routes.App.Delete(selectedAppId), 'id -> "delete-app-form") {
+            <button id="delete-app-button" type="button" class="btn btn-danger">Delete application</button>
+            <p>Please, be certain. Once you delete your application, there is no way back. Data will be deleted permanently.</p>
+        }
+
+    }
+
+    <script type="text/javascript">
+        $(function(){
+            $('#generate-token' ).click(function(){
+                $.get('@routes.App.generateToken', function(data){
+                    if(data.code == 0){
+                        $('#token' ).val(data.token);
+                    }
+                });
+            });
+
+            $('#delete-app-button').click(function() {
+                bootbox.confirm("Are you sure?", function(result) {
+                    if (result) {
+                        $("#delete-app-form").submit();
+                    }
+                });
+            });
+        });
+    </script>
+}

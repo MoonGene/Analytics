@@ -1,0 +1,145 @@
+@(allApps: List[MobileApp], sessionData: SessionData, acc: Account, contactDetailForm: Form[ContactDetails])
+
+@common.analytics.frame(title = "MoonGene Mobile Analytics", selectedAppId = "") {
+    @account.body(allApps = allApps, sessionData = sessionData, acc = acc) {
+
+        @common.analytics.currentpath("Account", Array("Settings"))
+
+        <h3>Account Settings</h3>
+        <div class="innerLR">
+            <div class="widget widget-tabs border-bottom-none">
+                <div class="widget-head">
+                    <ul>
+                        <li><a class="active glyphicons edit" href="#account-details" data-toggle="tab"><i></i>Contact Details</a></li>
+                        <li><a class="glyphicons settings" href="#account-password" data-toggle="tab"><i></i>Change Password</a></li>
+                    </ul>
+                </div>
+
+                <div class="widget-body">
+                    <div class="form-horizontal">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="account-details">
+                                @helper.form(action = routes.AccountDetails.settingsUpdate()) {
+                                <input name="id" type="hidden" value='@contactDetailForm("id").value.get'/>
+                                <div class="row-fluid">
+
+                                    <!-- Column -->
+                                    <div class="span3">
+                                        <strong>Contact details</strong>
+                                        <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                    <!-- // Column END -->
+
+                                    <!-- Column -->
+
+                                    <div class="span9">
+                                        <div class="row-fluid">
+                                            <div class="span6">
+                                                <label>First Name</label>
+                                                <div class='input-prepend @if(contactDetailForm("firstName").hasErrors) { has-error }'>
+                                                    <input type="text" name="firstName" id="inputFirstName" class="input-large" value='@contactDetailForm("firstName").value.get'/>
+                                                    <span style="margin: 0;" class="btn-action single glyphicons circle_question_mark" data-toggle="tooltip" data-placement="top" data-original-title="First name is mandatory"><i></i></span>
+                                                </div>
+                                                <div class="separator bottom"></div>
+
+                                                <label>Last Name</label>
+                                                <div class='input-prepend @if(contactDetailForm("lastName").hasErrors) { has-error }'>
+                                                    <input type="text" name="lastName" id="inputLastName" class="input-large" value='@contactDetailForm("lastName").value.get'/>
+                                                    <span style="margin: 0;" class="btn-action single glyphicons circle_question_mark" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>
+                                                </div>
+                                                <div class="separator bottom"></div>
+
+                                                <label>Company</label>
+                                                <div class='input-prepend @if(contactDetailForm("company").hasErrors) { has-error }'>
+                                                    <input type="text" name="company" id="inputCompany" class="input-large" value='@contactDetailForm("company").value.get'/>
+                                                </div>
+                                                <div class="separator bottom"></div>
+                                            </div>
+
+                                            <div class="span6">
+                                                <label for="inputPhone">Phone</label>
+                                                <div class='input-prepend @if(contactDetailForm("phone").hasErrors) { has-error }'>
+                                                    <span class="add-on glyphicons phone"><i></i></span>
+                                                    <input type="text" name="phone" id="inputPhone" class="input-large" value='@contactDetailForm("phone").value.getOrElse("")'/>
+                                                </div>
+                                                <div class="separator bottom"></div>
+
+                                                <div class='input-prepend @if(contactDetailForm("email").hasErrors) { has-error }'>
+                                                    <span class="add-on glyphicons envelope"><i></i></span>
+                                                    <input type="text" name="email" id="inputEmail" class="input-large" value='@contactDetailForm("email").value.get'/>
+                                                </div>
+                                                <div class="separator bottom"></div>
+
+                                                <label for="inputWebsite">Website</label>
+                                                <div class='input-prepend @if(contactDetailForm("website").hasErrors) { has-error }'>
+                                                    <span class="add-on glyphicons link"><i></i></span>
+                                                    <input type="text" name="website" id="inputWebsite" class="input-large" value='@contactDetailForm("website").value.getOrElse("")'/>
+                                                </div>
+                                                <div class="separator bottom"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- // Column END -->
+
+                                </div>
+
+
+                                <div class="separator line bottom"></div>
+
+                                <div class="form-actions" style="margin: 0;">
+                                    <button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button>
+                                </div>
+                                <!-- // Form actions END -->
+                                }
+                            </div>
+
+                            <div class="tab-pane" id="account-password">
+                                <div class="row-fluid">
+
+                                    <!-- Column -->
+                                    <div class="span3">
+                                        <strong>Change password</strong>
+                                        <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                    <!-- // Column END -->
+
+                                    <!-- Column -->
+                                    <div class="span9">
+                                        <label for="inputPasswordOld">Old password</label>
+                                        <input type="password" id="inputPasswordOld" class="span10" value="" placeholder="Leave empty for no change" />
+                                        <span class="margin-none btn-action single glyphicons circle_question_mark" data-toggle="tooltip" data-placement="top" data-original-title="Leave empty if you don't wish to change the password"><i></i></span>
+                                        <div class="separator bottom"></div>
+
+                                        <label for="inputPasswordNew">New password</label>
+                                        <input type="password" id="inputPasswordNew" class="span12" value="" placeholder="Leave empty for no change" />
+                                        <div class="separator bottom"></div>
+
+                                        <label for="inputPasswordNew2">Repeat new password</label>
+                                        <input type="password" id="inputPasswordNew2" class="span12" value="" placeholder="Leave empty for no change" />
+                                        <div class="separator bottom"></div>
+                                    </div>
+
+                                </div>
+
+                                <div class="separator line bottom"></div>
+
+                                <!-- Form actions -->
+                                <div class="form-actions" style="margin: 0;">
+                                    <button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button>
+                                </div>
+                                <!-- // Form actions END -->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- // Widget END -->
+
+        </div>
+
+
+
+    }
+}

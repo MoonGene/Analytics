@@ -1,0 +1,56 @@
+
+.state
+{
+    stroke-width: 4px;
+    fill-opacity: 1.0;
+    fill: rgb(255, 255, 255);
+}
+
+/* Node Style for Application specific states */
+.outer-app {
+    stroke: rgb(150,221,245);
+}
+.inner-app {
+    fill: rgb(49,189,235);
+}
+
+/* Node Style for System specific states */
+.outer-sys {
+    stroke: rgb(148,225,228);
+}
+.inner-sys {
+    fill: rgb(48,196,198);
+}
+
+/* Node Style for Newly created states during a realtime dynamic view */
+.outer-purple {
+    fill: rgb(204,189,230);
+}
+.inner-purple {
+    stroke: rgb(160,134,211);
+}
+
+/* Node Style for Attention required states */
+.outer-orange {
+    fill: rgb(249,194,148);
+}
+.inner-orange {
+    stroke: rgb(249,139,47);
+}
+
+.state-text {
+  pointer-events: none;
+  font: 15px sans-serif;
+  text-anchor: middle;
+  text-shadow: 0px 0px 8px #000; /*, 0px 0px 8px #000*/
+  fill: #ffffff;
+  /*
+  stroke: #ffffff;
+  stroke-width: 1px;
+  */
+}
+
+.transition {
+  stroke: #999;
+  stroke-opacity: .7;
+}

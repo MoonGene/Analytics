@@ -1,0 +1,75 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                                                                 controllers.Application.index
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                                                     controllers.Assets.at(path="/public", file)
+
+# Authorization
+POST        /auth/login                                                       controllers.Auth.login
+GET         /auth/signout                                                     controllers.Auth.signout
+POST        /auth/signup                                                      controllers.Auth.signup
+GET         /auth/forgot-password                                             controllers.Auth.forgotPassword
+POST        /auth/forgot-password                                             controllers.Auth.sendResetPasswordLink
+GET         /auth/reset-password                                              controllers.Auth.resetPassword(email:String, hash:String, time:Long)
+
+# Account Details
+GET         /account/settings                                                 controllers.AccountDetails.settings
+POST        /account/settings                                                 controllers.AccountDetails.settingsUpdate
+POST        /account/messages/send                                            controllers.DataFetcher.messagessend
+
+# Analytics
+GET         /analytics                                                        controllers.Analytics.index
+GET         /analytics/app/generatetoken                                      controllers.App.generateToken
+GET         /analytics/app/:appId/dashboard                                   controllers.Analytics.dashboard(appId:String)
+GET         /analytics/app/:appId/basic/:page                                 controllers.Analytics.basic(appId:String, page:String)
+GET         /analytics/app/:appId/intelligent/:cat/:page                      controllers.Analytics.intelligent(appId:String, cat:String, page:String)
+
+# App Settings and Details
+GET         /analytics/app/:appId/integrate/:os                               controllers.App.integrate(appId:String, os:String)
+GET         /analytics/app/:appId                                             controllers.App.Get(appId:String)
+POST        /analytics/app/create                                             controllers.App.Create
+POST        /analytics/app/update                                             controllers.App.Update
+POST        /analytics/app/adminUpdate                                        controllers.App.AdminUpdate
+POST        /analtyics/app/delete/:appId                                      controllers.App.Delete(appId:String)
+
+# Data Fetcher for page data
+GET         /data/dashboard/:appId/:from/:to                                  controllers.DataFetcher.dashboard(appId:String, from: Long, to: Long)
+GET         /data/geo/:appId/:date                                            controllers.DataFetcher.geo(appId:String, date: Long)
+POST        /data/segment                                                     controllers.DataFetcher.segment
+POST        /data/segment/save                                                controllers.DataFetcher.segmentsave
+GET         /data/segment/delete/:name                                        controllers.DataFetcher.segmentdelete(name: String)
+GET         /data/segment/values/:appId                                       controllers.DataFetcher.segmentFilterValues(appId: String)
+POST        /data/retention                                                   controllers.DataFetcher.retention
+GET         /data/behavior/appflow/:appId/:from                               controllers.DataFetcher.behaviorAppFlow(appId: String, from: Long)
+GET         /data/behavior/profile/:appId/:date                               controllers.DataFetcher.behaviorProfile(appId: String, date: Long)
+GET         /data/behavior/firstsession/:appId                                controllers.DataFetcher.behaviorFirstSession(appId: String)
+GET         /data/eco/balance/:appId/:date                                    controllers.DataFetcher.ecobalance(appId: String, date: Long)
+GET         /data/eco/profile/:appId/:date                                    controllers.DataFetcher.ecoprofile(appId: String, date: Long)
+GET         /data/eco/trigger/:appId/:date                                    controllers.DataFetcher.ecotrigger(appId: String, date: Long)
+
+# Data Fetcher for admin page data
+GET         /data/admin/health/:from/:to                                      controllers.AdminDataFetcher.health(from: Long, to: Long)
+
+# Administration section
+GET         /admin/health                                                     controllers.Admin.health
+GET         /admin/users                                                      controllers.Admin.users
+GET         /admin/apps                                                       controllers.Admin.apps
+
+# Email
+POST        /email                                                            controllers.Email.send(hash: String)
+
+# Utils
+POST        /pdf                                                              controllers.Utils.pdf
+POST        /subscribe                                                        controllers.Utils.subscribe
+
+# Front-page
+#GET         /about                                                            controllers.FrontPage.about
+GET         /features                                                         controllers.FrontPage.features
+
+# Untrailing of a slash, so that urls like http://aaa/ and http://aaa work the same way
+
+GET         /*path/                                                           controllers.Application.untrailSlash(path: String)

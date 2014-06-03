@@ -1,0 +1,13 @@
+@(selectedAppId: String, selectedApp: MobileApp, mobileApps: List[MobileApp], subPage: String, acc: Account, sessionData: SessionData, location: Option[String])
+
+@common.analytics.frame(title = "MoonGene Mobile Analytics", selectedAppId = selectedAppId) {
+    @analytics.body(selectedAppId = selectedAppId, allApps = mobileApps, activeTab = "intelligent", acc = acc, sessionData = sessionData, location = location) {
+
+        @common.analytics.currentpath(selectedApp.name, Array("Intelligent", "Marketing", subPage))
+
+        <h1>Marketing - @subPage</h1>
+        <div class="innerLR">
+           @common.unavailable()
+        </div>
+    }
+}

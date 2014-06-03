@@ -1,0 +1,48 @@
+@(selectedAppId: String, selectedApp: MobileApp, mobileApps: List[MobileApp], acc: Account, sessionData: SessionData, location: Option[String])
+
+@common.analytics.frame(title = "Retention - MoonGene - Realtime Mobile Analytics for Games and Apps!", selectedAppId = selectedAppId) {
+    @analytics.body(
+        selectedAppId = selectedAppId,
+        allApps = mobileApps,
+        activeTab = "basic",
+        acc = acc,
+        sessionData = sessionData,
+        location = location) {
+
+        @common.analytics.currentpath(selectedApp.name, Array("Basic", "Retention"))
+
+        <h1>Retention</h1>
+        <div class="innerLR">
+            <div class="row-fluid">
+                <div class="span6 dash">
+                    @common.analytics.segment(false, acc)
+                </div>
+                <div class="span6 dash">
+                    @common.analytics.timeblock(false)
+                </div>
+            </div>
+
+            <p class="separator text-center"><i class="icon-ellipsis-horizontal icon-3x"></i></p>
+
+            <div id="widget-query-filter" class="widget row-fluid widget-heading-simple widget-body-gray">
+                @common.dataunavailable(text = "No Data is currently available, try a different segment or time frame.", hidden = false)
+            </div>
+
+            @common.analytics.retentioncharts()
+            @common.analytics.retentiontable()
+
+            <p class="separator text-center"><i class="icon-ellipsis-horizontal icon-3x"></i></p>
+        </div>
+
+
+        <!-- DataTables Tables Plugin -->
+       <script src="@routes.Assets.at("scripts/plugins/tables/DataTables/media/js/jquery.dataTables.min.js")"></script>
+       <script src="@routes.Assets.at("scripts/plugins/tables/DataTables/extras/TableTools/media/js/ZeroClipboard.js")"></script>
+       <script src="@routes.Assets.at("scripts/plugins/tables/DataTables/extras/TableTools/media/js/TableTools.js")"></script>
+       <script src="@routes.Assets.at("scripts/plugins/tables/DataTables/extras/ColVis/media/js/ColVis.min.js")"></script>
+       <script src="@routes.Assets.at("scripts/plugins/tables/DataTables/media/js/DT_bootstrap.js")"></script>
+
+       <script src="@routes.Assets.at("scripts/moongene/common_segmtime.js?122213")"></script>
+       <script src="@routes.Assets.at("scripts/moongene/graph/retention.js?122213")"></script>
+    }
+}

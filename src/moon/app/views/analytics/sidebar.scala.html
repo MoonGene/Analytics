@@ -1,0 +1,27 @@
+@(mobileApps: List[MobileApp], selectedAppId: String, location: Option[String])
+
+<div id="menu" class="hidden-print">
+   <!-- Brand -->
+   <a href="@routes.Analytics.index()" class="appbrand"><span class="text-primary">MOON</span> <span>GENE</span></a>
+   <!-- Scrollable menu wrapper with Maximum height -->
+   <div class="slim-scroll" data-scroll-height="800px">
+       <button type="button" class="btn btn-navbar">
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+       </button>
+      <!-- Menu -->
+      <ul>
+         <li @if(selectedAppId == "all") { class = "active" } ><a href="@routes.Analytics.dashboard("all")" class="glyphicons sort"><i></i><span>All Apps</span></a></li>
+          @mobileApps.map { app =>
+            <li @if(app.id.get.stringify == selectedAppId) { class = "active" } >
+                <a href="@if(location == None) {@routes.Analytics.dashboard(app.id.get.stringify)} else {@location.get.replace("APPID", app.id.get.stringify)}" class="glyphicons gamepad"><i></i><span>@app.name</span></a>
+            </li>
+          }
+
+         <li><a href="#modal-newapp" data-toggle="modal" class="glyphicons pencil"><i></i><span>Create new...</span></a></li>
+      </ul>
+
+      <div class="clearfix"></div>
+      <!-- // Menu END -->
+   </div>
+   <!-- // Scrollable Menu wrapper with Maximum Height END -->
+</div>

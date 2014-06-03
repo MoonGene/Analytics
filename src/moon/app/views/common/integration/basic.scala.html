@@ -1,0 +1,59 @@
+@(os: String, selectedApp: MobileApp)
+
+    <p>Basic Analytics, including dashboard will be fully functional ones you add just a few lines of initialization code to your app or game.</p>
+
+    <h5>Initialization</h5>
+    <p>Before any methods can be called in the SDK, it has to be instantiated and initialized. Normally, you should keep just one instance of analytics objects withing the whole app session.</p>
+<pre class="prettyprint">
+@if(os == "Android") {
+    //Import the SDK
+    import com.moongene.android.Analytics;
+
+    public class SampleActivity extends Activity
+    {
+        //This is your main instance of analytics
+        Analytics mAnalytics;
+
+        @Html("@Override")
+        public void onCreate(Bundle savedInstanceState) @Html("{")
+            //You instantiate analytics using your app ID and token. Here is for @selectedApp.name
+            mAnalytics = Analytics.getInstance(this, "@selectedApp.id.get.stringify", "@selectedApp.token");
+
+            //Now just have your own code...
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.main);
+
+            //...
+        @Html("}")
+    }
+} @if(os == "iOS") {
+    //No code yet is provided for iOS!
+}
+</pre>
+
+    <h5>De-Initialization</h5>
+    <p>When your main activity is about to be destroyed, make sure to report session end. To make sure that events are sent before quit, analytics will try to flush events when you call sessionExit. If this fails, data will be sent at the next session start.</p>
+    <pre class="prettyprint">
+@if(os == "Android") {
+
+    //Your main activity
+    public class SampleActivity extends Activity
+    {
+        //This is your main instance of analytics
+        Analytics mAnalytics;
+
+        @Html("@Override")
+        protected void onDestroy() @Html("{")
+            mAnalytics.sessionExit();
+
+            //Execute your cleanup code
+            super.onDestroy();
+
+            //...
+
+        @Html("}")
+    }
+} @if(os == "iOS") {
+    //No code yet is provided for iOS!
+}
+    </pre>

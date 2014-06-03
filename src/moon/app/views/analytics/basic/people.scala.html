@@ -1,0 +1,20 @@
+@(selectedAppId: String, selectedApp: MobileApp, mobileApps: List[MobileApp], acc: Account, sessionData: SessionData, location: Option[String])
+
+@common.analytics.frame(title = "People - MoonGene - Realtime Mobile Analytics for Games and Apps!", selectedAppId = selectedAppId) {
+    @analytics.body(selectedAppId = selectedAppId, allApps = mobileApps, activeTab = "basic", acc = acc, sessionData = sessionData, location = location) {
+
+        @common.analytics.currentpath(selectedApp.name, Array("Basic", "People"))
+
+        <h1>People</h1>
+        <div class="innerLR">
+            <div class="row-fluid">
+                <div class="span6 dash">
+                    @common.analytics.segment(false, acc)
+                </div>
+                <div class="span6 dash">
+                    @common.analytics.timeblock(false)
+                </div>
+            </div>
+        </div>
+    }
+}

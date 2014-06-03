@@ -1,0 +1,32 @@
+@(closed: Boolean)
+
+<div class="widget widget-heading-simple widget-body-gray" data-toggle="collapse-widget" data-collapse-closed="@closed">
+   <!-- Widget heading -->
+   <div class="widget-head">
+      <h4 class="heading">Time Range: <strong id="timerange-current-title"></strong></h4>
+       <!-- span class="collapse-toggle"></span -->
+   </div>
+   <!-- // Widget heading END -->
+   <div class="widget-body" style="height: auto;">
+      <div class="row-fluid" style="overflow: visible;">
+
+          <div class="span4" style="overflow: visible;">
+            <select class="selectpicker col-md-3" id="timerange-preset-picker">
+              <option value="3d">Past 3 days</option>
+              <option value="7d">Past 7 days</option>
+              <option value="14d">Past 14 days</option>
+              <option value="28d">Past 28 days</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+          <div class="span8"><h4 class="heading">Current selection: <strong id="timerange-currentsel-text"></strong></h4></div>
+          <div class="span12">
+              <div class="widget widget-heading-simple widget-body-white span8">
+                      <div id="timerange-calendars">
+                      </div>
+	          </div>
+          </div>
+          <span id="timerange-apply" class="hidden-phone btn btn-toggle-code btn-mini btn-primary btn-icon glyphicons play"><i></i> Apply</span>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="widget widget-heading-simple widget-body-simple" >
+   <div class="widget-body">
+        <div class="row-fluid">
+            <div class="span6 dash">
+                <div><h4 class="heading" title="Daily Active Users">DAU</h4></div>
+                <div class="graph chart-white" id="segmentchart_dau"></div>
+            </div>
+            <div class="span6 dash">
+                <div><h4 class="heading">Revenue</h4></div>
+                <div class="graph chart-white" id="segmentchart_revenue"></div>
+            </div>
+        </div>
+   </div>
+</div>
+
+<div class="widget widget-heading-simple widget-body-simple">
+   <div class="widget-body">
+        <div class="row-fluid">
+            <div class="span6 dash">
+                <h4 class="heading">Sessions</h4>
+                <div class="graph chart-white" id="segmentchart_sessions"></div>
+            </div>
+            <div class="span6 dash">
+                <h4 class="heading">Average Session Length</h4>
+                <div class="graph chart-white" id="segmentchart_sessionlength"></div>
+            </div>
+        </div>
+   </div>
+</div>
+
+<style>
+    .v-path {
+       stroke-width: 1.5px;			/* the line width for paths is 2 pixels */
+       fill: none;					/* don't fill the area bounded by any path elements */
+    }
+
+    .axis path,
+    .axis line {
+       fill: none;					/* don't fill areas bounded by the axis line */
+       stroke: grey;				/* make the axis line grey */
+       stroke-width: 2;			/* make the width of the axis lines 1 pixel */
+        shape-rendering: crispEdges;/* make the edges sharp */
+    }
+
+    .dark-grid .tick {
+        stroke: darkgrey;
+        opacity: 0.1;
+    }
+
+    .grid .tick {
+        stroke: lightgrey;
+        opacity: 0.1;
+    }
+    .grid path {
+          stroke-width: 0;
+    }
+
+    div.graph-tooltip {
+      position: absolute;
+      text-align: center;
+      width: 120px;
+      height: 28px;
+      padding: 8px;
+      font: 12px sans-serif;
+      background: #fff;
+      border: solid 1px #aaa;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+</style>

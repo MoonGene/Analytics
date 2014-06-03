@@ -1,0 +1,116 @@
+@(closed: Boolean, acc: Account)
+
+<script type="text/javascript">
+    var savedSegments = [
+    @if(acc.segments != None) {
+        @acc.segments.get.map { segm =>
+            {
+                "name": "@segm.name",
+                @if(segm.countries != None) { "countries": ["@Html(segm.countries.get.mkString("\",\""))"], }
+                @if(segm.cities != None) { "cities": [@segm.cities.get.mkString(",")], }
+                @if(segm.platform != None) { "platform": [@segm.platform.get.mkString(",")], }
+                @if(segm.platformV != None) { "platformV": ["@Html(segm.platformV.get.mkString("\",\""))"], }
+                @if(segm.language != None) { "language": ["@Html(segm.language.get.mkString("\",\""))"], }
+                @if(segm.vendor != None) { "vendor": ["@Html(segm.vendor.get.mkString("\",\""))"], }
+                @if(segm.model != None) { "model": ["@Html(segm.model.get.mkString("\",\""))"], }
+                @if(segm.carrier != None) { "carrier": ["@Html(segm.carrier.get.mkString("\",\""))"], }
+                @if(segm.connection != None) { "connection": ["@Html(segm.connection.get.mkString("\",\""))"], }
+                @if(segm.appversion != None) { "appversion": ["@Html(segm.appversion.get.mkString("\",\""))"], }
+                @if(segm.usertype != None) { "usertype": ["@Html(segm.usertype.get.mkString("\",\""))"], }
+                @if(segm.trafficsource != None) { "trafficsource": ["@Html(segm.trafficsource.get.mkString("\",\""))"], }
+                @if(segm.resolution != None) { "resolution": ["@Html(segm.resolution.get.mkString("\",\""))"], }
+                "end": 0
+            },
+        }
+    }
+    { "end": 0}
+    ];
+</script>
+
+<div id="widget-query-filter" class="widget row-fluid widget-heading-simple widget-body-gray"
+    data-toggle="collapse-widget" data-collapse-closed="@closed" data-data-url="@routes.DataFetcher.segment"
+        data-data-retention-url="@routes.DataFetcher.retention">
+
+   <!-- Widget heading -->
+   <div class="widget-head">
+       <h4 class="heading">Segment: <strong id="segment-current-title"></strong></h4>
+   </div>
+   <!-- // Widget heading END -->
+   <div id="segment-block" class="widget-body widget-visible">
+      <div class="row-fluid">
+          <div class="input-append">
+             <input class="span12" id="segment-current-dropdown" type="text" value="Untitled">
+             <div class="btn-group dropdown">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu pull-right">
+                   <li><a href="javascript: newSegment();">New</a></li>
+                   <li class="divider"></li>
+                   <li class="dropdown submenu">
+                        <a data-toggle="dropdown">Load segment...</a>
+                        <ul class="dropdown-menu submenu-show pull-right submenu-hide" id="segment-load-list">
+                        </ul>
+                   </li>
+                   <li><a href="javascript: saveSegment();" id="segment-current-save">Save as 'Untitled'</a></li>
+                   <li class="divider"></li>
+                   <li><a href="javascript: deleteSegment();" id="segment-current-delete">Delete 'Untitled'</a></li>
+                </ul>
+
+             </div>
+          </div>
+      </div>
+
+      <div id="filtersBlock">
+      </div>
+
+      <div class="separator bottom"></div>
+
+      <div class="input-append">
+        <div class="btn-group dropdown">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <span class="btn-primary btn-icon glyphicons circle_plus"><i></i>Add filter</span>
+            </button>
+
+                <ul class="dropdown-menu pull-left">
+                    <li class="dropdown submenu">
+                         <a data-toggle="dropdown">Geo</a>
+                         <ul class="dropdown-menu submenu-show pull-right submenu-hide">
+                             <li><a href="javascript: addSegmentFilter('country');">Country</a></li>
+                             <li><a href="javascript: addSegmentFilter('city');">City</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown submenu">
+                         <a data-toggle="dropdown">Device</a>
+                         <ul class="dropdown-menu submenu-show pull-right submenu-hide">
+                             <li><a href="javascript: addSegmentFilter('platform');">Platform<!-- Android / iOS --></a></li>
+                             <li><a href="javascript: addSegmentFilter('osversion');">OS Version</a></li>
+                             <!-- li><a href="javascript: addSegmentFilter('language');">Language</a></li -->
+                             <li><a href="javascript: addSegmentFilter('vendor');">Vendor<!-- Samsung, Nokia --></a></li>
+                             <li><a href="javascript: addSegmentFilter('model');">Model<!-- Samsung, Nokia --></a></li>
+                             <li><a href="javascript: addSegmentFilter('resolution');">Screen<!-- 640x480, etc. --></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown submenu">
+                         <a data-toggle="dropdown">Network</a>
+                         <ul class="dropdown-menu submenu-show pull-right submenu-hide">
+                             <li><a href="javascript: addSegmentFilter('carrier');">Carrier<!-- T-Mobile, Sprint, Verizon, etc. --></a></li>
+                             <li><a href="javascript: addSegmentFilter('connection');">Connection<!-- 3G, GPRS, WiFi --></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown submenu">
+                         <a data-toggle="dropdown">App</a>
+                         <ul class="dropdown-menu submenu-show pull-right submenu-hide">
+                             <li><a href="javascript: addSegmentFilter('appversion');">Version</a></li>
+                             <li><a href="javascript: addSegmentFilter('usertype');">User type<!-- Paying, Not Paying, Paying - All, Paying - Whales, etc. --></a></li>
+                             <!-- li><a href="javascript: addSegmentFilter('trafficsource');">Traffic source</a></li --> <!-- Where the user came from, marketing channels, ad networks, etc. -->
+                        </ul>
+                    </li>
+                 </ul>
+        </div>
+       </div>
+
+      <span id="segment-apply" class="hidden-phone btn btn-toggle-code btn-mini btn-primary btn-icon glyphicons play"><i></i> Apply</span>
+   </div>
+</div>

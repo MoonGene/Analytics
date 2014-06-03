@@ -1,0 +1,80 @@
+@(acc: Option[Account])
+
+<div class="modal hide fade" id="modal-support">
+
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>@if(acc == None) { Contact us } else { Customer Support }</h3>
+	</div>
+
+	<!-- Modal body -->
+    <div class="modal-body">
+        <div class="row-fluid" style="overflow: visible;">
+            <div class="span12">
+                <div class="innerAll">
+                    <div class="chat-controls">
+                        <div class="innerLR">
+                            <form id="modal-support-form" class="margin-none">
+                                @if(acc == None) {
+                                    <div class="row-fluid">
+                                        <div class="span2">
+                                            <h5>Name</h5>
+                                        </div>
+                                        <div class="span10">
+                                            <input id="support-name" type="text" name="name" class="input-block-level margin-none" placeholder="Type your name ...">
+                                        </div>
+                                    </div>
+                                    <div class="separator bottom"></div>
+
+                                    <div class="row-fluid">
+                                        <div class="span2">
+                                            <h5>E-mail</h5>
+                                        </div>
+                                        <div class="span10">
+                                            <input id="support-email" type="text" name="email" class="input-block-level margin-none" placeholder="Type your email ..." >
+                                        </div>
+                                    </div>
+                                    <div class="separator bottom"></div>
+                                }
+
+                                <div class="row-fluid">
+                                    <div class="span2">
+                                        <h5>Topic</h5>
+                                     </div>
+                                    <div class="span10">
+                                        <select name="topic" id="support-topic" class="selectpicker span12">
+                                            <option selected="selected">API Integration</option>
+                                            <option>Billing</option>
+                                            <option>Business Inquiries</option>
+                                            <option>Feature Suggestion</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="separator bottom"></div>
+
+                                <div class="row-fluid">
+                                    <div class="span2">
+                                        <h5>Message</h5>
+                                    </div>
+                                    <div class="span10">
+                                        <textarea id="support-message" name="message" class="span12" rows="5" placeholder="Type your message ..."></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- // Modal body END -->
+
+	<!-- Modal footer -->
+	<div class="modal-footer">
+        <a id="modal-support-send" data-send-url="@routes.DataFetcher.messagessend" data-loading-text="Loading..." class="btn btn-primary btn-icon glyphicons envelope"><i></i> Send</a>
+	</div>
+	<!-- // Modal footer END -->
+
+</div>

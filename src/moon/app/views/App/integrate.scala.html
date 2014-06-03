@@ -1,0 +1,71 @@
+@(
+selectedAppId: String,
+selectedApp: MobileApp,
+os: String,
+mobileApps: List[MobileApp],
+acc: Account,
+sessionData: SessionData
+)
+
+@common.analytics.frame(title = "MoonGene Mobile Analytics", selectedAppId = selectedAppId) {
+@analytics.body(selectedAppId = selectedAppId, allApps = mobileApps, activeTab = "integrate", acc = acc, sessionData = sessionData, location = None) {
+
+@common.analytics.currentpath(selectedApp.name, Array("Integrate"))
+
+<h1>Integration - @os</h1>
+
+    <div class="innerTB" style="padding: 0 15px">
+        <!-- Tabs -->
+        <div class="relativeWrap">
+            <div class="widget widget-tabs widget-tabs-double-2 widget-tabs-gray">
+
+                <!-- Tabs Heading -->
+                <div class="widget-head">
+                    <ul>
+                        <li class="active"><a class="glyphicons cargo" href="#tabSDK" data-toggle="tab"><i></i><span>Add SDK</span></a></li>
+                        <li><a class="glyphicons notes" href="#tabBasic" data-toggle="tab"><i></i><span>Basic Analytics</span></a></li>
+                        <li><a class="glyphicons fishes" href="#tabBehavior" data-toggle="tab"><i></i><span>Behavior</span></a></li>
+                        <li><a class="glyphicons coins" href="#tabEconomy" data-toggle="tab"><i></i><span>Economy</span></a></li>
+                        <!-- li><a class="glyphicons pie_chart" href="#tabSupport" data-toggle="tab"><i></i><span>Marketing</span></a></li>
+                        <li><a class="glyphicons history" href="#tabFeatures" data-toggle="tab"><i></i><span>Evolution</span></a></li>
+                        <li><a class="glyphicons history" href="#tabFeatures" data-toggle="tab"><i></i><span>Engineering</span></a></li -->
+                    </ul>
+                </div>
+                <!-- // Tabs Heading END -->
+
+                <div class="widget-body">
+                        <div class="tab-content">
+
+                        <!-- Tab content -->
+                        <div id="tabSDK" class="tab-pane active widget-body-regular">
+                                @common.integration.sdk(os, selectedApp)
+                        </div>
+                        <!-- // Tab content END -->
+
+                        <!-- Tab content -->
+                        <div id="tabBasic" class="tab-pane widget-body-regular">
+                            @common.integration.basic(os, selectedApp)
+                        </div>
+                        <!-- // Tab content END -->
+
+                        <!-- Tab content -->
+                        <div id="tabBehavior" class="tab-pane widget-body-regular">
+                            @common.integration.behavior(os, selectedApp)
+                        </div>
+                        <!-- // Tab content END -->
+
+                        <!-- Tab content -->
+                        <div id="tabEconomy" class="tab-pane widget-body-regular">
+                            @common.integration.economy(os, selectedApp)
+                        </div>
+                        <!-- // Tab content END -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- // Tabs END -->
+    </div>
+}
+}

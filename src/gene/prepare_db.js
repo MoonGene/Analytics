@@ -8,9 +8,6 @@ db["apps"].insert({"_id": "DUMMY"});
 db["apps"].remove({"_id": "DUMMY"});
 db["apps"].ensureIndex({deleted: 1});
 
-db["messaging"].insert({"_id": "DUMMY"});
-db["messaging"].remove({"_id": "DUMMY"});
-
 db["subscription"].insert({"_id": "DUMMY"});
 db["subscription"].remove({"_id": "DUMMY"});
 
@@ -71,84 +68,3 @@ db["users"].insert(
     "suspended" : false,
     "tokens" : []
 });
-
-db["payments"].insert(
-{
-    "_id" : "PLANS",
-    "plans" : [ 
-        {
-            "name" : "Free",
-            "id" : "MG_FREE",
-            "level" : NumberInt(0),
-            "price" : NumberInt(0),
-            "events" : NumberInt(20000),
-            "features" : [ 
-                "Unlimited Apps", 
-                "iOS & Android", 
-                "Basic Support"
-            ]
-        }, 
-        {
-            "name" : "Startup",
-            "id" : "MG_STARTUP",
-            "price" : NumberInt(6000),
-            "level" : NumberInt(1),
-            "events" : NumberInt(200000),
-            "features" : [ 
-                "Unlimited Apps", 
-                "iOS & Android", 
-                "Commercial Support"
-            ]
-        }, 
-        {
-            "name" : "Pro",
-            "id" : "MG_PRO",
-            "price" : NumberInt(15000),
-            "level" : NumberInt(2),
-            "events" : NumberInt(1000000),
-            "features" : [ 
-                "Unlimited Apps", 
-                "iOS & Android", 
-                "Commercial Support"
-            ]
-        }, 
-        {
-            "name" : "Business",
-            "id" : "MG_BUSINESS",
-            "price" : NumberInt(45000),
-            "level" : NumberInt(3),
-            "events" : NumberInt(4000000),
-            "features" : [ 
-                "Unlimited Apps", 
-                "iOS & Android", 
-                "Commercial Support"
-            ]
-        }, 
-        {
-            "name" : "Enterprise",
-            "id" : "MG_ENTERPRISE",
-            "price" : NumberInt(200000),
-            "level" : NumberInt(4),
-            "events" : NumberInt(20000000),
-            "features" : [ 
-                "Unlimited Apps", 
-                "iOS & Android", 
-                "Commercial Support"
-            ]
-        }, 
-        {
-            "name" : "Custom",
-            "id" : "MG_CUSTOM",
-            "price" : NumberInt(-1),
-            "level" : NumberInt(5),
-            "events" : NumberInt(-1),
-            "features" : [ 
-                "Unlimited Apps", 
-                "iOS & Android", 
-                "SLA", 
-                "On & Off Premise"
-            ]
-        }
-    ]
-});
-

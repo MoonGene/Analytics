@@ -1,0 +1,10 @@
+@(acc: Account, sessionData: SessionData)
+
+@common.analytics.frame(title = "MoonGene Mobile Analytics", selectedAppId = "") {
+    @analytics.body(selectedAppId = "all", allApps = List(), activeTab = "admin", acc = acc, sessionData = sessionData, location = None) {
+
+        @common.analytics.currentpath("Administration", Array("Apps"))
+
+        <h1>Apps</h1>
+    }
+}
