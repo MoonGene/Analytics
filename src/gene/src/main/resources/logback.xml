@@ -1,0 +1,20 @@
+<configuration scan="true">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{ISO8601} %-5level %logger{36} %X{sourceThread} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <File>./logs/akka.log</File>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%-5level] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="akka://mongodb-akka" level="DEBUG" />
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>

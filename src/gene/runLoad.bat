@@ -1,0 +1,1 @@
+sbt -Dconfig.resource=load/load.dev.conf "run-main com.moongene.Load"

@@ -1,0 +1,1 @@
+sbt -Dconfig.resource=core/core.dev.conf "run-main com.moongene.Core" SBT_OPTS="-Djava.library.path=..\tools\hyperic-sigar-1.6.4\sigar-bin\lib"
